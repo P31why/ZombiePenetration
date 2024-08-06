@@ -9,6 +9,8 @@ public class PlayerMovment : MonoBehaviour
     private float _z;
     private Vector3 _dir;
     private float _speed=10;
+    private float _jumpForce = 5;
+    private bool _isMoving;
     private void Awake()
     {
         _rb=GetComponent<Rigidbody>();
@@ -22,6 +24,23 @@ public class PlayerMovment : MonoBehaviour
     }
     private void LateUpdate()
     {
-        _rb.MovePosition(transform.position+_dir*_speed*Time.deltaTime);
+        Jump();
+        Move();
+    }
+    private void Move()
+    {
+        _rb.MovePosition(transform.position + _dir * _speed * Time.deltaTime);
+    }
+    private void Jump()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            _rb.AddForce(Vector3.up*_jumpForce, ForceMode.Impulse);
+        }
+    }
+    public bool IsMoving
+    {
+        get => _isMoving;
+        set => _isMoving = value;
     }
 }
