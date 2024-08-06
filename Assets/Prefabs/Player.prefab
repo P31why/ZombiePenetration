@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d50a3d5bc2f59347bde417aa7a560c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 100
+  _jumpForce: 80
   _groundChecker: {fileID: 7539892172336521852}
   layer:
     serializedVersion: 2
