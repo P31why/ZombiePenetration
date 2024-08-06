@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -15,19 +15,20 @@ public class PlayerStats : MonoBehaviour
     private float _water;
     [SerializeField]
     private BodyPart[] _bodyParts;
-  
-   
-
-
+    [SerializeField]
+    private Image _staminaBar;
+    [SerializeField]
+    private Image _foodBar;
+    [SerializeField]
+    private Image _waterBar;
 
 
     void Awake()//базовая инициализация статов
     {
         _food = 100;
         _water = 100;
-        _bodyParts = null;
         _stamina = 20;
-
+        _bodyParts = new BodyPart[6];
     }
 
 
@@ -54,5 +55,9 @@ public class PlayerStats : MonoBehaviour
         {
             _stamina += staminaBuf * Time.deltaTime;
         }
+        //пользовательский интерфайс
+        _staminaBar.fillAmount = _stamina / 100;
+        _foodBar.fillAmount=_food / 100;
+        _waterBar.fillAmount=_water / 100;
     }
 }

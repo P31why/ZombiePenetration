@@ -6,29 +6,19 @@ public class BodyPart : MonoBehaviour
 {
     private GameObject _part;
     private float _health;
-
-
-    private void Awake()
+    BodyPart()
     {
-        _health = 100;
+        this._health = 100f;
+        this._part = null;
     }
-
     public GameObject Part
     {
-
-    
-    
-
     get { return _part; } 
     set { _part = value; }
-
     }
-
     public float Health
     {
-
         get { return _health; }
         set { _health = value; }
-
     }
 }
