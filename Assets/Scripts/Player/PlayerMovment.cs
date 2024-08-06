@@ -9,8 +9,12 @@ public class PlayerMovment : MonoBehaviour
     private float _z;
     private Vector3 _dir;
     private float _speed=10;
+    [SerializeField]
     private float _jumpForce = 5;
-    private bool _isMoving;
+    private bool _isRunning;
+    [SerializeField]
+    private Transform _groundChecker;
+    public LayerMask layer;
     private void Awake()
     {
         _rb=GetComponent<Rigidbody>();
@@ -29,18 +33,31 @@ public class PlayerMovment : MonoBehaviour
     }
     private void Move()
     {
-        _rb.MovePosition(transform.position + _dir * _speed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _rb.MovePosition(transform.position + _dir * _speed * 2 * Time.deltaTime);
+            _isRunning = true;
+        }
+        else
+        {
+            _rb.MovePosition(transform.position + _dir * _speed * Time.deltaTime);
+            _isRunning = false;
+        }
     }
     private void Jump()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            _rb.AddForce(Vector3.up*_jumpForce, ForceMode.Impulse);
+        
+            if (Physics.CheckSphere(_groundChecker.position, 0.1f,layer))
+            {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            }
         }
     }
-    public bool IsMoving
+    public bool IsRunning
     {
-        get => _isMoving;
-        set => _isMoving = value;
+        get => _isRunning;
+        set => _isRunning = value;
     }
 }
