@@ -1118,6 +1118,7 @@ MonoBehaviour:
   _staminaBar: {fileID: 145012597}
   _foodBar: {fileID: 376184172}
   _waterBar: {fileID: 168962609}
+  staminaBuf: 6
 --- !u!4 &1860069144
 Transform:
   m_ObjectHideFlags: 0

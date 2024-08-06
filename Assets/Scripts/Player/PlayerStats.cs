@@ -21,7 +21,8 @@ public class PlayerStats : MonoBehaviour
     private Image _foodBar;
     [SerializeField]
     private Image _waterBar;
-
+    [SerializeField]
+    private float staminaBuf = 6f;
 
     void Awake()//базовая инициализация статов
     {
@@ -34,14 +35,20 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
-        float staminaBuf = 8f;
-        if (_food < 30)
+
+        if (_food < 30)//дебаф от голода
         {
-            staminaBuf -= 3f;
+            if (_stamina >= 0 && _stamina - 3 >= 0)
+            {
+                staminaBuf -= 3f;
+            }
         }
-        if (_water < 30)
+        if (_water < 30)//дебаф от обезвоживания
         {
-            staminaBuf -= 3f;
+            if (_stamina >= 0 && _stamina-3>=0)
+            {
+                staminaBuf -= 3f;
+            }
         }
         if (_food >= 0)//уменьшение голода
         {
