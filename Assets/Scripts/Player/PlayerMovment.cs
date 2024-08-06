@@ -22,14 +22,21 @@ public class PlayerMovment : MonoBehaviour
 
     private void Update()
     {
-        _x = Input.GetAxis("Horizontal");
-        _z = Input.GetAxis("Vertical");
-        _dir = transform.right * _x + transform.forward * _z;
+        if (Input.GetButton("Horizontal") && Input.GetButton("Vertical"))
+        {
+            _x = Input.GetAxis("Horizontal");
+            _z = Input.GetAxis("Vertical");
+            _dir = transform.right * _x + transform.forward * _z;
+        }
+        
     }
     private void LateUpdate()
     {
-        Jump();
-        Move();
+        if (Input.GetButton("Horizontal") && Input.GetButton("Vertical"))
+        {
+            Jump();
+            Move();
+        }
     }
     private void Move()
     {
