@@ -22,7 +22,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private Image _waterBar;
     [SerializeField]
-    private float staminaBuf = 6f;
+    private float _staminaBuf = 6f;
 
     void Awake()//базовая инициализация статов
     {
@@ -32,7 +32,12 @@ public class PlayerStats : MonoBehaviour
         _bodyParts = new BodyPart[6];
     }
 
+    public float StaminaBuf
+    {
+        get { return _staminaBuf; }
+        set { _staminaBuf = value; }
 
+    }
     void Update()
     {
 
@@ -40,14 +45,14 @@ public class PlayerStats : MonoBehaviour
         {
             if (_stamina >= 0 && _stamina - 3 >= 0)
             {
-                staminaBuf -= 3f;
+                _staminaBuf -= 3f;
             }
         }
         if (_water < 30)//дебаф от обезвоживания
         {
             if (_stamina >= 0 && _stamina-3>=0)
             {
-                staminaBuf -= 3f;
+                _staminaBuf -= 3f;
             }
         }
         if (_food >= 0)//уменьшение голода
@@ -60,7 +65,7 @@ public class PlayerStats : MonoBehaviour
         }
         if (_stamina < 100)//увеличение стамины
         {
-            _stamina += staminaBuf * Time.deltaTime;
+            _stamina += _staminaBuf * Time.deltaTime;
         }
         //пользовательский интерфайс
         _staminaBar.fillAmount = _stamina / 100;
