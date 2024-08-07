@@ -122,45 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &140406333 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8424348091702635373, guid: b13469dd121ae6349b07736a0a921060,
-    type: 3}
-  m_PrefabInstance: {fileID: 7272455211187662380}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &140406334 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7685177876954438573, guid: b13469dd121ae6349b07736a0a921060,
-    type: 3}
-  m_PrefabInstance: {fileID: 7272455211187662380}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140406333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d50a3d5bc2f59347bde417aa7a560c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &140406337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140406333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a199e6ebac432194b96fda25909d0112, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stamina: 0
-  _food: 0
-  _water: 0
-  _bodyParts: []
-  _staminaBar: {fileID: 193439785}
-  _foodBar: {fileID: 1090154118}
-  _waterBar: {fileID: 1404775468}
-  _player: {fileID: 140406334}
-  _run: 0
 --- !u!1 &193439783
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,11 +877,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7685177876954438573, guid: b13469dd121ae6349b07736a0a921060,
+    - target: {fileID: 5672571323366117907, guid: b13469dd121ae6349b07736a0a921060,
         type: 3}
-      propertyPath: _stats
+      propertyPath: _foodBar
       value: 
-      objectReference: {fileID: 140406337}
+      objectReference: {fileID: 1090154118}
+    - target: {fileID: 5672571323366117907, guid: b13469dd121ae6349b07736a0a921060,
+        type: 3}
+      propertyPath: _waterBar
+      value: 
+      objectReference: {fileID: 1404775468}
+    - target: {fileID: 5672571323366117907, guid: b13469dd121ae6349b07736a0a921060,
+        type: 3}
+      propertyPath: _staminaBar
+      value: 
+      objectReference: {fileID: 193439785}
     - target: {fileID: 8424348091702635373, guid: b13469dd121ae6349b07736a0a921060,
         type: 3}
       propertyPath: m_Name
@@ -929,11 +900,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8424348091702635373, guid: b13469dd121ae6349b07736a0a921060,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 140406337}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b13469dd121ae6349b07736a0a921060, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
