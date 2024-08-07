@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 997730905664921441}
   - component: {fileID: 5412865833967857985}
   - component: {fileID: 7685177876954438573}
+  - component: {fileID: 5672571323366117907}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -369,3 +370,25 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 8
+  _stats: {fileID: 5672571323366117907}
+--- !u!114 &5672571323366117907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8424348091702635373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a199e6ebac432194b96fda25909d0112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stamina: 0
+  _food: 0
+  _water: 0
+  _bodyParts: []
+  _staminaBar: {fileID: 0}
+  _foodBar: {fileID: 0}
+  _waterBar: {fileID: 0}
+  _player: {fileID: 7685177876954438573}
+  _run: 0
