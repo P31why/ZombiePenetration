@@ -10,7 +10,7 @@ public class PlayerMovment : MonoBehaviour
     private Vector3 _dir;
     private float _speed=10;
     [SerializeField]
-    private float _jumpForce = 5;
+    private float _jumpForce = 100;
     private bool _isRunning;
     [SerializeField]
     private Transform _groundChecker;
@@ -22,21 +22,14 @@ public class PlayerMovment : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButton("Horizontal") && Input.GetButton("Vertical"))
-        {
-            _x = Input.GetAxis("Horizontal");
-            _z = Input.GetAxis("Vertical");
-            _dir = transform.right * _x + transform.forward * _z;
-        }
-        
+        _x = Input.GetAxis("Horizontal");
+        _z = Input.GetAxis("Vertical");
+        _dir = transform.right * _x + transform.forward * _z;
     }
     private void LateUpdate()
     {
-        if (Input.GetButton("Horizontal") && Input.GetButton("Vertical"))
-        {
-            Jump();
-            Move();
-        }
+        Jump();
+        Move();
     }
     private void Move()
     {
