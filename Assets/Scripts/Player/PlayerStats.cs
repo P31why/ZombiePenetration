@@ -22,37 +22,38 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private Image _waterBar;
     [SerializeField]
-    private float _staminaBuf = 6f;
+    private PlayerMovment _player;
+    [SerializeField]
+    protected bool _run;
+
+
+
+
 
     void Awake()//базовая инициализация статов
     {
         _food = 100;
         _water = 100;
-        _stamina = 20;
+        _stamina = 100;
         _bodyParts = new BodyPart[6];
     }
 
-    public float StaminaBuf
-    {
-        get { return _staminaBuf; }
-        set { _staminaBuf = value; }
-
-    }
+   
     void Update()
     {
 
         if (_food < 30)//дебаф от голода
         {
-            if (_stamina >= 0 && _stamina - 3 >= 0)
+            if (_stamina - (5 * Time.deltaTime)>=0)
             {
-                _staminaBuf -= 3f;
+                _stamina-=5*Time.deltaTime;
             }
         }
         if (_water < 30)//дебаф от обезвоживания
         {
-            if (_stamina >= 0 && _stamina-3>=0)
+            if (_stamina - (5 * Time.deltaTime) >= 0)
             {
-                _staminaBuf -= 3f;
+                _stamina -= 5 * Time.deltaTime;
             }
         }
         if (_food >= 0)//уменьшение голода
@@ -63,13 +64,42 @@ public class PlayerStats : MonoBehaviour
         {
             _water -= 0.5f * Time.deltaTime;
         }
-        if (_stamina < 100)//увеличение стамины
+
+        if (_player.IsRunning && _stamina - (10 * Time.deltaTime)>=0)//проверка если бег
         {
-            _stamina += _staminaBuf * Time.deltaTime;
+            _stamina -= 10 * Time.deltaTime;
         }
+        else
+        {
+            if (_stamina + (2 * Time.deltaTime) <= 100)
+            {
+                _stamina += 2 * Time.deltaTime;
+            }
+        }
+        if (_stamina + (2 * Time.deltaTime)<=100)
+        {
+            _stamina += 2 * Time.deltaTime;
+        }
+       
+        if(_stamina > 20)
+        {
+            _run = true;
+        }
+        else
+        {
+            _run = false;
+        }
+        
+
+
         //пользовательский интерфайс
         _staminaBar.fillAmount = _stamina / 100;
         _foodBar.fillAmount=_food / 100;
         _waterBar.fillAmount=_water / 100;
+    }
+    public bool Run
+    {
+        get { return _run; }
+        set { _run = value; }
     }
 }
