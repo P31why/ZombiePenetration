@@ -15,6 +15,8 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField]
     private Transform _groundChecker;
     public LayerMask layer;
+    [SerializeField]
+    private PlayerStats _stats;
     private void Awake()
     {
         _rb=GetComponent<Rigidbody>();
@@ -33,7 +35,7 @@ public class PlayerMovment : MonoBehaviour
     }
     private void Move()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && _stats.Run)
         {
             _rb.MovePosition(transform.position + _dir * _speed * 2 * Time.deltaTime);
             _isRunning = true;
@@ -46,9 +48,8 @@ public class PlayerMovment : MonoBehaviour
     }
     private void Jump()
     {
-        
-            if (Physics.CheckSphere(_groundChecker.position, 0.1f,layer))
-            {
+        if (Physics.CheckSphere(_groundChecker.position, 0.1f,layer))
+        {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
