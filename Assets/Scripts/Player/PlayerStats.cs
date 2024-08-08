@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using System.Timers;
 using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class PlayerStats : MonoBehaviour
 {
@@ -27,7 +30,8 @@ public class PlayerStats : MonoBehaviour
     private PlayerMovment _player;
     [SerializeField]
     private bool _run;
-    private System.Timers.Timer _runCd;
+    private System.Timers.Timer _runTimer;
+    private bool _readyToRun;
     
 
 
@@ -38,11 +42,18 @@ public class PlayerStats : MonoBehaviour
         _water = 100;
         _stamina = 100;
         _bodyParts = new BodyPart[6];
-        _runCd = new System.Timers.Timer(1000);
-        _runCd.AutoReset = false;
-     
+        _runTimer = new System.Timers.Timer();
+        _runTimer.Interval = 5000;
+        _runTimer.Elapsed += OnTimedEvent;
+        _readyToRun = true;
     }
-  
+
+    private void OnTimedEvent(object sender, ElapsedEventArgs e)
+    {
+        _run = true;
+        _readyToRun = true;
+    }
+
 
     void Update()
     {
@@ -85,26 +96,21 @@ public class PlayerStats : MonoBehaviour
         {
             _stamina += 2 * Time.deltaTime;
         }
-        //бег
 
-       
-        if (_stamina>20)
+
+
+        //бег
+        if (_stamina>20 && _readyToRun)
         {
             _run = true;
         }
         else
-        { 
-            _run = false;
-            _runCd.Start();
-
-        }
-        if (_runCd.Enabled)
         {
-            _runCd.Stop();
-            _run = true;
+            _run = false;
+            _readyToRun = false;
+            _runTimer.Start();
         }
-
-
+       
 
 
         //пользовательский интерфайс
