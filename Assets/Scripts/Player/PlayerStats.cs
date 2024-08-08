@@ -1,8 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Timers;
 using UnityEditor;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class PlayerStats : MonoBehaviour
 {
@@ -24,9 +29,10 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private PlayerMovment _player;
     [SerializeField]
-    protected bool _run;
-
-
+    private bool _run;
+    private System.Timers.Timer _runTimer;
+    private bool _readyToRun;
+    
 
 
 
@@ -36,9 +42,19 @@ public class PlayerStats : MonoBehaviour
         _water = 100;
         _stamina = 100;
         _bodyParts = new BodyPart[6];
+        _runTimer = new System.Timers.Timer();
+        _runTimer.Interval = 5000;
+        _runTimer.Elapsed += OnTimedEvent;
+        _readyToRun = true;
     }
 
-   
+    private void OnTimedEvent(object sender, ElapsedEventArgs e)
+    {
+        _run = true;
+        _readyToRun = true;
+    }
+
+
     void Update()
     {
 
@@ -80,16 +96,21 @@ public class PlayerStats : MonoBehaviour
         {
             _stamina += 2 * Time.deltaTime;
         }
-       
-        if(_stamina > 20)
+
+
+
+        //бег
+        if (_stamina>20 && _readyToRun)
         {
             _run = true;
         }
         else
         {
             _run = false;
+            _readyToRun = false;
+            _runTimer.Start();
         }
-        
+       
 
 
         //пользовательский интерфайс
@@ -97,6 +118,7 @@ public class PlayerStats : MonoBehaviour
         _foodBar.fillAmount=_food / 100;
         _waterBar.fillAmount=_water / 100;
     }
+
     public bool Run
     {
         get { return _run; }
